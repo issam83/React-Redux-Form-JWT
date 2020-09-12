@@ -1,34 +1,53 @@
-import React, { Component } from 'react'
-import Header from '../containers/header'
-import { Route, Switch } from 'react-router-dom'
-import Ressources from './ressources';
-import Home from './home';
-import RequireAuthentification from '../helpers/require-authentification';
-import Signin from './signin';
-import Signout from './signout';
-import Signup from './signup';
-import Errors from './errors';
+import React, { useEffect } from "react";
+import { Provider } from "react-redux";
+import store from "../redux/reducers/root-reducer";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
+import reducers from "../redux/reducers/root-reducer";
+import { persistStore } from "redux-persist";
+import logger from "redux-logger";
 
-require("../style.css");
-export default class App extends Component {
+import { PersistGate } from "redux-persist/integration/react";
+import { actionCounter } from "../redux/middlewares/action-counter";
+import { setAuthentification } from "../redux/actions/user-action";
+import setAuthToken from "../helpers/setAuthToken";
+import { loadUser } from "../redux/actions/user-action";
+import Routes from "../routes";
 
-  render() {
-    return (
-      <div>
-        <Header/>
-        <div className="container body_content">
-          <Errors/>
-        <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/ressources' 
-            component={RequireAuthentification(Ressources)}/>
-            <Route exact path='/signin' component={Signin}/>
-            <Route exact path='/signout' component={Signout}/>
-            <Route exact path='/signup' component={Signup}/>
+// const persistor = persistStore(store);
 
-        </Switch>
-      </div>
-    </div>
-    )
-  }
-}
+// const token = localStorage.getItem("token");
+// if (token) {
+//   store.dispatch(setAuthentification(true));
+// }
+
+// const invariant = require("redux-immutable-state-invariant").default();
+
+// const createStoreWithMiddleware = applyMiddleware(
+//   logger,
+//   thunk,
+//   actionCounter,
+//   invariant
+// )(createStore);
+
+// const store = createStoreWithMiddleware(
+//   reducers,
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// );
+
+// if (localStorage.token) {
+//   setAuthToken(localStorage.token);
+//}
+
+const App = () => {
+  // useEffect(() => {
+  //   store.dispatch(loadUser());
+  // }, []);
+  return (
+    <Provider store={store}>
+      <Routes />
+    </Provider>
+  );
+};
+
+export default App;

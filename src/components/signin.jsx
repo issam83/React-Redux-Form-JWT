@@ -1,57 +1,66 @@
-import React, { Component } from 'react'
-import { Field, reduxForm } from 'redux-form'
-import * as actions from '../actions'
-import { connect } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { signin, login } from "../redux/actions/user-action";
 
-const FIELDS = { email: 'email', password: 'password'}
+const SignIn = props => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const userSignin = useSelector(state => state.userSignin);
+  const { loading, userInfo, error } = userSignin;
+  const dispatch = useDispatch();
 
-class Signin extends Component {
-
-    myHandleSubmit = credentials => {
-        this.props.signinUser(credentials, this.props.history)
+  useEffect(() => {
+    if (userInfo) {
+      props.history.push("/ressources");
     }
+    return () => {
+      //
+    };
+  }, [userInfo]);
 
-    render() {
-        return (
-            <form onSubmit={this.props.handleSubmit(this.myHandleSubmit)}>
-                <div className='row justify-content-md-center'>
-                    <h1>Connexion</h1>
-                </div>
-                <div className='row justify-content-md-center'>
-                    <fieldset className='col-md-4 form-group'>
-                        <label className='bmd-label-floating'>Email</label>
-                        <Field 
-                            name={FIELDS.email}
-                            component='input'
-                            type='text'
-                            className='form-control'
-                        />
-                    </fieldset>
-                </div>
-                <div className='row justify-content-md-center'>
-                    <fieldset className='col-md-4 form-group'>
-                        <label className='bmd-label-floating'>Password</label>
-                        <Field 
-                            name={FIELDS.password}
-                            component='input'
-                            type='password'
-                            className='form-control'
-                        />
-                    </fieldset>
-                </div>
-                <div className='row justify-content-md-center'>
-                    <button type='submit' className='btn btn-primary btn-raised'>
-                        Valider
-                    </button>
-                </div>
-            </form>
-        )
-    }
-}
+  const submitHandler = e => {
+    e.preventDefault();
+    dispatch(signin(email, password));
+  };
 
-const signinForm = reduxForm({
-    form: 'signin',
-    fields: Object.keys(FIELDS)
-})(Signin)
+  return (
+    <form onSubmit={submitHandler}>
+      <div className="row justify-content-md-center">
+        <h1>Connexion</h1>
+      </div>
+      {loading && <div>Loading...</div>}
+      {error && <div>{error}</div>}
+      <div className="row justify-content-md-center">
+        <fieldset className="col-md-4 form-group">
+          <label className="bmd-label-floating">Email</label>
+          <input
+            name="email"
+            component="input"
+            type="text"
+            className="form-control"
+            onChange={e => setEmail(e.target.value)}
+          />
+        </fieldset>
+      </div>
+      <div className="row justify-content-md-center">
+        <fieldset className="col-md-4 form-group">
+          <label className="bmd-label-floating">Password</label>
+          <input
+            name="password"
+            component="input"
+            type="password"
+            className="form-control"
+            onChange={e => setPassword(e.target.value)}
+          />
+        </fieldset>
+      </div>
+      <div className="row justify-content-md-center">
+        <button type="submit" className="btn btn-primary btn-raised">
+          Valider
+        </button>
+      </div>
+    </form>
+  );
+};
 
-export default connect(null, actions)(signinForm)
+export default SignIn;

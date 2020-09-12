@@ -1,34 +1,30 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import * as actions from '../actions'
-import { withRouter } from 'react-router'
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import * as actions from "../redux/actions";
+import { withRouter } from "react-router";
 
 export class Errors extends Component {
-
-    componentWillUpdate(nextProps) {
-        if(this.props.location != nextProps.location){
-            this.props.resetError()
-        }
+  componentWillUpdate(nextProps) {
+    if (this.props.location !== nextProps.location) {
+      this.props.resetError();
     }
-    
+  }
 
-
-    render() {
-        return (
-            this.props.error && 
-            <div className='alert alert-danger' role='alert'>
-                {this.props.error}
-            </div>
-        )
-    }
+  render() {
+    return (
+      this.props.error && (
+        <div className="alert alert-danger" role="alert">
+          {this.props.error}
+        </div>
+      )
+    );
+  }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        error: state.errors.message
-    }
-}
+const mapStateToProps = state => {
+  return {
+    error: state.errors.message
+  };
+};
 
-
-export default withRouter(connect(mapStateToProps, actions)(Errors))
+export default withRouter(connect(mapStateToProps, actions)(Errors));

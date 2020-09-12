@@ -1,29 +1,28 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-export default function(ChildComponent){
-    class RequireAuthentification extends Component {
-        componentWillMount() {
-            if(!this.props.isLoggedIn){
-                this.props.history.push('/')
-            }
-        }
-
-        componentWillUpdate(nextProps) {
-            if(!nextProps.isLoggedIn){
-                this.props.history.push('/')
-            }
-        }
-        
-        
-        render() {
-            return this.props.isLoggedIn && <ChildComponent />
-        }
+export default function(ChildComponent) {
+  class RequireAuthentification extends Component {
+    componentWillMount() {
+      if (!this.props.isLoggedIn) {
+        this.props.history.push("/ressources");
+      }
     }
 
-    const mapDispatchToProps = (state) => ({
-        isLoggedIn: state.authentification.isLoggedIn
-    })
+    componentWillUpdate(nextProps) {
+      if (!nextProps.isLoggedIn) {
+        this.props.history.push("/ressources");
+      }
+    }
 
-    return connect(mapDispatchToProps)(RequireAuthentification)
+    render() {
+      return this.props.isLoggedIn && <ChildComponent />;
+    }
+  }
+
+  const mapDispatchToProps = state => ({
+    isLoggedIn: state.authentification.isLoggedIn
+  });
+
+  return connect(mapDispatchToProps)(RequireAuthentification);
 }

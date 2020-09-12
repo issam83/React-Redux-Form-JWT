@@ -1,31 +1,47 @@
 {
   "name": "react-redux-avance-intro",
+  "proxy": "http://localhost:9000",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
     "bcrypt-nodejs": "0.0.3",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jquery": "^1.9.1",
+    "js-cookie": "^2.2.1",
+    "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.6",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mongoose": "^5.7.5",
     "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "node-sass": "^4.14.1",
+    "nodemailer": "^6.4.11",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
-    "react-redux": "^5.0.7",
+    "react-redux": "^7.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^3.4.1",
+    "react-stripe-checkout": "^2.6.3",
+    "reactstrap": "^8.4.1",
     "redux": "^3.7.2",
-    "redux-form": "^8.2.6",
+    "redux-form": "^8.3.6",
     "redux-immutable-state-invariant": "^2.1.0",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.2.0",
     "reselect": "^4.0.0"
   },
@@ -35,5 +51,17 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "server": "nodemon server/index.js"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
