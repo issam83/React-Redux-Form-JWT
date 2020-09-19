@@ -4,6 +4,7 @@ import "./cart-item.scss";
 const CartItem = ({ item: { image, name, price, quantity } }) => (
   <div className="cart-item">
     <img src={image} alt="item" />
+    {console.log(image)}
     <div className="item-details">
       <span className="name">{name}</span>
       <span className="price">

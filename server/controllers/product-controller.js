@@ -49,9 +49,11 @@ exports.createProduct = async (req, res) => {
     if (!category) {
       return res.status(404).json({ message: "Category not found" });
     }
-    Product.create({
+    const stackFiles = req.files.map(file => file.path);
+
+    await Product.create({
       name: req.body.name,
-      // image: req.file.path,
+      images: stackFiles,
       brand: req.body.brand,
       price: req.body.price,
       description: req.body.description,
@@ -61,12 +63,14 @@ exports.createProduct = async (req, res) => {
       // numReview: req.body.numReview,
       isNewProduct: req.body.isNewProduct
     });
+    console.log("files", req.files);
     return res.status(201).json({ message: "Product successfully Created" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Error in Product Creation" });
   }
 };
+
 
 exports.updateProduct = (req, res) => {
   const id = req.params.id;
@@ -79,7 +83,7 @@ exports.updateProduct = (req, res) => {
     {
       $set: {
         name: req.body.name,
-        image: req.body.image,
+        images: req.body.image,
         brand: req.body.brand,
         price: req.body.price,
         description: req.body.description,

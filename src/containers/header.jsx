@@ -13,10 +13,10 @@ import "./header.scss";
 const Header = ({ hidden }) => (
   <div className="header">
     <div className="options">
-      <Link className="option" to="/shop">
+      <Link className="option" to={"/shop"}>
         SHOP
       </Link>
-      <Link className="option" to="/contact">
+      <Link className="option" to={"/contact"}>
         CONTACT
       </Link>
       <CartIcon />

@@ -9,7 +9,7 @@ import "./cart-icon.scss";
 const CartIcon = () => {
   const cart = useSelector(state => state.cart);
   const { cartItems } = cart;
-  const itemCount = cartItems.reduce((a, c) => a + c.quantity, 0);
+  const itemCount = cartItems.reduce((a, c) => a + +c.quantity, 0);
 
   const dispatch = useDispatch();
 

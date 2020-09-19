@@ -32,11 +32,11 @@ const Routes = () => {
           <Errors />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/category/:id" component={ItemByCategory} />
+            <Route path="/category/:id" component={ItemByCategory} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/shop" component={ShopScreen} />
             <Route path="/shop/:id" component={ItemScreen} />
-            <Route exact path="/checkout/:id?" component={CheckoutPage} />
+            <Route path="/checkout/:id?" component={CheckoutPage} />
             <Route exact path="/ressources" component={Ressources} />
             <Route exact path="/shipping" component={Shipping} />
             <Route exact path="/payment" component={Payment} />
