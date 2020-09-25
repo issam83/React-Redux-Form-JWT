@@ -16,7 +16,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
-    "jquery": "^1.9.1",
+    "jquery": "^3.5.0",
     "js-cookie": "^2.2.1",
     "jsonwebtoken": "^8.5.1",
     "jwt-simple": "^0.5.6",
