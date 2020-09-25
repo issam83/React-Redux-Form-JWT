@@ -2,6 +2,9 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../redux/actions/cart-action";
+import axios from "axios";
+
+import StripeCheckoutButton from "../components/stripe-button/stripe-button";
 
 import "./checkout.scss";
 
@@ -23,6 +26,12 @@ function CheckoutItem(props) {
     }
   }, []);
 
+  const checkoutHandler = () => {
+    props.history.push("/shipping");
+  };
+
+  const total = cartItems.reduce((a, c) => a + +c.price * +c.quantity, 0);
+
   return (
     <div>
       <div>
@@ -37,7 +46,7 @@ function CheckoutItem(props) {
               <div className="checkout-item" key={i}>
                 <img
                   className="image-container"
-                  src={`/${item.image}`}
+                  src={`/${item.images[0]}`}
                   alt="product"
                 />
                 <div className="name">
@@ -75,9 +84,22 @@ function CheckoutItem(props) {
           Subtotal ({cartItems.reduce((a, c) => a + +c.quantity, 0)} items) : ${" "}
           {cartItems.reduce((a, c) => a + +c.price * +c.quantity, 0)}
         </h3>
-        <button disabled={cartItems.length === 0}>Proceed to Checkout</button>
+        <Link to={"/shop"}>
+          <button> Go back to shopping </button>
+        </Link>
+        OR
+        <button onClick={checkoutHandler} disabled={cartItems.length === 0}>
+          Proceed to Checkout
+        </button>
       </div>
     </div>
+    // <StripeCheckoutButton />
+    // <PaypalButton
+    // toPay={total}
+    // onSuccess={transactionSuccess}
+    // onError={transactionError}
+    // onCanceled={transactionCanceled}
+    // />
   );
 }
 

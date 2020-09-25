@@ -71,7 +71,6 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-
 exports.updateProduct = (req, res) => {
   const id = req.params.id;
   // check s'il exist sinon throw error
@@ -83,7 +82,7 @@ exports.updateProduct = (req, res) => {
     {
       $set: {
         name: req.body.name,
-        images: req.body.image,
+        images: req.files.images,
         brand: req.body.brand,
         price: req.body.price,
         description: req.body.description,

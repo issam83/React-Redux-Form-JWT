@@ -20,6 +20,7 @@ const Directory = () => {
   return (
     <div className="directory-menu">
       {categories.map((category, i) => {
+        console.log(category);
         return (
           <Link to={`/category/${category._id}`}>
             <div className="menu-item" key={i}>

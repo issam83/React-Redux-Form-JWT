@@ -24,7 +24,8 @@ exports.createCategory = (req, res) => {
   const category = new Category({
     name: req.body.name,
     description: req.body.description,
-    image: req.file.path
+    shortDescription: req.body.shortDescription
+    // image: req.file.path
   });
   category
     .save()
@@ -46,7 +47,8 @@ exports.updateCategory = (req, res) => {
       $set: {
         name: req.body.name,
         description: req.body.description,
-        image: req.file.path
+        shortDescription: req.body.shortDescription,
+        //image: req.file.path
       }
     }
   )

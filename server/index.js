@@ -31,6 +31,9 @@ app.use("/category", categoryRouter);
 app.use("/product", productRouter);
 app.use("/order", orderRouter);
 app.use("/contact", contactRouter);
+app.get("/config/paypal", (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID)
+})
 
 mongoose
   .connect(process.env.MONGO_URI, {

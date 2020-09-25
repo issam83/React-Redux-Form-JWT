@@ -15,6 +15,8 @@ import SignIn from "./components/signin";
 import Shipping from "./pages/shipping";
 import Payment from "./pages/payment";
 import PlaceOrder from "./pages/placeOrder";
+import CategoryRessources from "./components/category-ressources";
+import Order from "./pages/order";
 require("../src/style.css");
 
 // <Route
@@ -33,11 +35,13 @@ const Routes = () => {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/category/:id" component={ItemByCategory} />
+            <Route path="/order/:id" component={Order} />
             <Route exact path="/contact" component={Contact} />
             <Route exact path="/shop" component={ShopScreen} />
             <Route path="/shop/:id" component={ItemScreen} />
             <Route path="/checkout/:id?" component={CheckoutPage} />
             <Route exact path="/ressources" component={Ressources} />
+            <Route exact path="/panel" component={CategoryRessources} />
             <Route exact path="/shipping" component={Shipping} />
             <Route exact path="/payment" component={Payment} />
             <Route exact path="/placeorder" component={PlaceOrder} />

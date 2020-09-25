@@ -18,6 +18,18 @@ import ErrorReducer from "./errors";
 import { cartReducer } from "./cart-reducer";
 import { userSigninReducer } from "./user-reducer";
 import { sendMessageReducer } from "./message-reducer";
+import {
+  categoryListReducer,
+  categoryDetailsReducer,
+  categorySaveReducer,
+  categoryEditReducer,
+  categoryDeleteReducer
+} from "./category-reducer";
+import {
+  orderCreateReducer,
+  orderDetailsReducer,
+  orderPayReducer
+} from "./order-reducer";
 
 const cartItems = Cookie.getJSON("cartItems") || [];
 const userInfo = Cookie.getJSON("userInfo") || null;
@@ -39,7 +51,15 @@ const rootReducer = combineReducers({
   userSignin: userSigninReducer,
   productSave: productSaveReducer,
   productEdit: productEditReducer,
-  productDelete: productDeleteReducer
+  productDelete: productDeleteReducer,
+  categoryList: categoryListReducer,
+  categoryDetails: categoryDetailsReducer,
+  categorySave: categorySaveReducer,
+  categoryEdit: categoryEditReducer,
+  categoryDelete: categoryDeleteReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderPay: orderPayReducer
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

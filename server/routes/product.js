@@ -32,7 +32,7 @@ const upload = multer({
   storage: storage,
   limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: fileFilter
-}).array("images", 2);
+}).array("images", 10);
 
 router.get("/", productController.getAllProductsByCategories);
 router.get("/category/:id", productController.getAllProductsByCategory);

@@ -4,10 +4,10 @@ import store from "../redux/reducers/root-reducer";
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import reducers from "../redux/reducers/root-reducer";
-import { persistStore } from "redux-persist";
+//import { persistStore } from "redux-persist";
 import logger from "redux-logger";
 
-import { PersistGate } from "redux-persist/integration/react";
+// import { PersistGate } from "redux-persist/integration/react";
 import { actionCounter } from "../redux/middlewares/action-counter";
 import { setAuthentification } from "../redux/actions/user-action";
 import setAuthToken from "../helpers/setAuthToken";

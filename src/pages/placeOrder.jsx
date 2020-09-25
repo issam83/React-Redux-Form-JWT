@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart, removeFromCart } from "../redux/actions/cart-action";
 import CheckoutSteps from "../components/checkoutSteps";
+import { createOrder } from "../redux/actions/order-action";
 
 function PlaceOrder(props) {
   const cart = useSelector(state => state.cart);
+  const orderCreate = useSelector(state => state.orderCreate);
+  const { loading, success, error, order } = orderCreate;
+
   const { cartItems, shipping, payment } = cart;
   if (!shipping.address) {
     props.history.push("/shipping");
@@ -20,9 +24,25 @@ function PlaceOrder(props) {
 
   const dispatch = useDispatch();
 
-  const placeOrderHandler = () => {};
+  const placeOrderHandler = () => {
+    dispatch(
+      createOrder({
+        orderItems: cartItems,
+        shipping,
+        payment,
+        itemsPrice,
+        shippingPrice,
+        taxPrice,
+        totalPrice
+      })
+    );
+  };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    if (success) {
+      props.history.push("/order/" + order._id);
+    }
+  }, [success]);
 
   return (
     <div>
@@ -52,7 +72,10 @@ function PlaceOrder(props) {
               ) : (
                 cartItems.map(item => (
                   <div>
-                    <img src={`/${item.image}`} alt="product" />
+                    <img
+                      src={`http://localhost:9000/${item.images[0]}`}
+                      alt="product"
+                    />
                     <div>
                       <Link to={`/product/${item.product}`}>{item.name}</Link>
                       <div>Quantity :{item.quantity}</div>

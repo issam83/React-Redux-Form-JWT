@@ -38,19 +38,54 @@ const ShopScreen = () => {
                   // if (sub.isNewProduct === false) {
                   //   return <div style={{ border: "red" }}></div>;
                   // }
+                  console.log(sub);
                   return (
                     <div className="collection-item" key={x}>
-                      <div
+                      <img
                         className="image"
-                        style={{ backgroundImage: `url(${sub.image})` }}
+                        src={`http://localhost:9000/${sub.images[0]}`}
                       />
-                      <div className="collection-footer">
-                        <span className="name">{sub.brand}</span>
-                        <span className="price">{sub.price}$</span>
-                      </div>
-                      <Link to={`/shop/${sub._id}`}>
-                        <CustomButton inverted> MORE DETAILS </CustomButton>
-                      </Link>
+                      {sub.isNewProduct === false ? (
+                        <div className="collection-footer">
+                          <span className="name">{sub.brand}</span>
+                          <span className="price">{sub.price}$</span>
+                        </div>
+                      ) : (
+                        <div className="collection-footer">
+                          <span className="name">{sub.brand}</span>
+                          <span className="price">{sub.price}$</span>
+                          <div
+                            style={{
+                              position: "absolute",
+                              top: "0%",
+                              transform: "translate(10px, 10px)",
+                              background:
+                                "repeating-linear-gradient(black, transparent 100px)",
+                              borderRadius: "47%",
+                              marginLeft: "4%",
+                              width: "23%",
+                              opacity: "0.8"
+                            }}
+                          >
+                            <h5
+                              style={{
+                                color: "ivory",
+                                textAlign: "center",
+                                marginTop: "15%"
+                              }}
+                            >
+                              New
+                            </h5>
+                          </div>
+                        </div>
+                      )}
+                      {sub.countInStock > 0 ? (
+                        <Link to={`/shop/${sub._id}`}>
+                          <CustomButton inverted> MORE DETAILS </CustomButton>
+                        </Link>
+                      ) : (
+                        <CustomButton disabled>INDIPONIBLE</CustomButton>
+                      )}
                     </div>
                   );
                 })}

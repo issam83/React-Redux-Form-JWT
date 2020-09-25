@@ -25,6 +25,20 @@ const ItemScreen = props => {
     );
   };
 
+  // if (product.images) {
+  //   product.images.map(image => {
+  //     return console.log(image);
+  //   });
+  // } else {
+  //   null;
+  // }
+
+  product &&
+    product.images &&
+    product.images.map(image => {
+      return console.log(image);
+    });
+
   return loading ? (
     <div>Loading...</div>
   ) : error ? (
@@ -34,9 +48,16 @@ const ItemScreen = props => {
       <div className="item-page">
         <div className="item-page-title">
           <h2>{product && product.name}</h2>
-          {console.log(product.name)}
+          {console.log("image", product && product.images && product.images)}
+          {console.log("length", product.images ? product.images.length : null)}
         </div>
-        <img src={`/${product.image}`} alt="product"></img>
+        {product &&
+          product.images &&
+          product.images.map(image => {
+            return (
+              <img src={`http://localhost:9000/${image}`} alt="product"></img>
+            );
+          })}
         <div className="collection-footer">
           <ul>
             <li>

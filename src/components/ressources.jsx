@@ -16,7 +16,7 @@ const Ressources = props => {
   const [addProduct, setAddProduct] = useState({
     name: "",
     price: 0,
-    image: "",
+    images: "",
     brand: "",
     category_id: "",
     countInStock: "",
@@ -27,7 +27,7 @@ const Ressources = props => {
   const productList = useSelector(state => state.productList);
   const { loading, products, error } = productList;
   console.log(loading, products);
-debugger
+
   const productDelete = useSelector(state => state.productDelete);
   const {
     loading: loadingDelete,
@@ -150,12 +150,12 @@ debugger
                 <label htmlFor="image">Image</label>
                 <input
                   type="text"
-                  name="image"
-                  id="image"
+                  name="images"
+                  id="images"
                   // value={image}
                   // onChange={e => setImage(e.target.value)}
-                  value={editProduct && editProduct.image}
-                  onChange={e => handleAddProduct(e, "image")}
+                  value={editProduct && editProduct.images}
+                  onChange={e => handleAddProduct(e, "images")}
                 ></input>
                 <input type="file"></input>
                 {uploading && <div>Uploading...</div>}

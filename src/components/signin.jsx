@@ -11,7 +11,7 @@ const SignIn = props => {
 
   useEffect(() => {
     if (userInfo) {
-      props.history.push("/ressources");
+      props.history.push("/panel");
     }
     return () => {
       //

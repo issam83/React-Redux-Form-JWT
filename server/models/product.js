@@ -15,9 +15,9 @@ const productSchema = new Schema(
         required: true
       }
     ],
-    // countInStock: { type: Number, default: 0, required: true },
+    countInStock: { type: Number, default: 0, required: true },
     // rating: { type: Number, default: 0, required: true },
-    numReview: { type: Number, default: 0, required: true },
+    //numReview: { type: Number, default: 0, required: true },
     isNewProduct: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now }
   },

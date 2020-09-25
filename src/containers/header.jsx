@@ -7,12 +7,16 @@ import { createStructuredSelector } from "reselect";
 import CartIcon from "../components/cart-icon/cart-icon";
 import CartDropdown from "../components/cart-dropdown/cart-dropdown";
 import { selectCartHidden } from "../redux/selectors/cart.selector";
+import { ReactComponent as HomeIcon } from "../assets/home.svg";
 
 import "./header.scss";
 
 const Header = ({ hidden }) => (
   <div className="header">
     <div className="options">
+      <Link className="option" to={"/"}>
+        <HomeIcon />
+      </Link>
       <Link className="option" to={"/shop"}>
         SHOP
       </Link>
